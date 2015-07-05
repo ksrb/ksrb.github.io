@@ -12,4 +12,7 @@
 
 #SASS
 /.sass-cache
-/css
+/src/assets/css
+
+#JSPM
+/src/jspm_packages

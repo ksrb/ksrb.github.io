@@ -11,10 +11,12 @@
   "trailing": true,
   "undef": true,
   "unused": true,
+  "esnext": true,
   //Development
   "browser": true,
   "globals": {
-    "angular": true,
-    "$": true
+    "angular": false,
+    "System": false,
+    "$": false
   }
 }
