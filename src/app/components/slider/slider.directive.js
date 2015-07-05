@@ -12,6 +12,6 @@ function slickSliderDirective($timeout) {
     };
 }
 
-slickSliderDirective.$injecct = ["$timeout"];
+slickSliderDirective.$inject = ["$timeout"];
 
 export default slickSliderDirective;

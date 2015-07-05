@@ -34,7 +34,7 @@ angular.module("app", ["ngAnimate", "mm.foundation"])
     .directive("slickSlider", slickSliderDirective);
 
 $(document).ready(function () {
-    angular.bootstrap(document, ["app"]);
+    angular.bootstrap(document, ["app"], {strictDi: true});
     var carousel = new Carousel();
     carousel.init();
 });
