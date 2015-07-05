@@ -1,7 +1,7 @@
 <!-- Consider more advanced directive use for both the legend and skills -->
 <div class="legends clearfix">
     <div class="legend" ng-click="showSearch = !showSearch" ng-class="{'selected':showSearch}">
-        <img src="images/skills/search.svg"/>
+        <img src="assets/images/skills/search.svg"/>
     </div>
 
     <div class="legend" ng-repeat="legend in SkillsCtrl.legends"
@@ -30,7 +30,7 @@
 
         <p class="name">{{skill.obj.name}}</p>
     </div>
-    <div class="meter" ng-include="'app/partials/meter.svg'"></div>
+    <div class="meter" ng-include="'app/components/skills/skills.view.meter.svg'"></div>
 </div>
 <div class="important" ng-if="results.length == 0">
     No results please try a different search
