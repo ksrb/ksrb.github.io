@@ -28,7 +28,7 @@ function ExperienceFactory(SkillsFactory) {
                 "Used Shopify to rapidly create webstore, used the Liquid templating language to customize appearance.",
                 "Simplified shipping process by integrating webstore with shipping providers such as FedEx and UPS.",
                 "Helping manage social media campaign on Facebook, Pinterest, and Twitter."
-            ],
+            ]
         },
         {
             organization: "Niksun",

@@ -7,7 +7,7 @@ function experienceDirective(ExperienceFactory) {
         link: function (scope) {
             scope.experiences = ExperienceFactory.getExperience();
         }
-    }
+    };
 }
 
 experienceDirective.$inject = ["ExperienceFactory"];

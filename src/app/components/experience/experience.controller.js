@@ -10,7 +10,7 @@
  */
 class ExperienceController {
 
-    constructor(ExperienceFactory, $modal, $scope) {
+    constructor($modal, $scope) {
 
         $scope.getLogoImage = function () {
             return getExperienceFolderPath() + "logo.png";
@@ -34,7 +34,7 @@ class ExperienceController {
             }
             //If not referencing a skill obj try name obj
             return skill.name;
-        }
+        };
 
         $scope.openModal = function (slideNum) {
             $scope.slideNum = slideNum;
@@ -52,6 +52,6 @@ class ExperienceController {
     }
 }
 
-ExperienceController.$inject = ["ExperienceFactory", "$modal", "$scope"];
+ExperienceController.$inject = ["$modal", "$scope"];
 
 export default ExperienceController;
