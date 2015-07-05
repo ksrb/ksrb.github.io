@@ -4,14 +4,16 @@
 * Github pages for a user are deployed under the repository [username].github.io under the master branch.
 * Therefore to avoid polluting the development branch with unnecessary files (compiled css and js) the master
 has been orphaned and all necessary changes are manually pulled from the [dev branch](https://github.com/ksrb/ksrb.github.io/tree/dev)
-* Major releases will be tagged
+* Releases will be tagged
 
 ###TODOs
 
 ####General
+* Replace [Foundation](https://github.com/zurb/foundation) with [Foundation for Apps](https://github.com/zurb/foundation-apps) to remove unmaintained [Angular Foundation](https://github.com/pineconellc/angular-foundation) dependency
+* Consider replacing Ruby Sass and Compass with [node-sass](https://github.com/sass/node-sass)
 * Code Quality
     * Testing not implemented
-    * Folder structure questionable need to consult best practices guide
+    * Folder structure improved but should still consults best practices for more hints
 
 ####Navbar section
 * Content
@@ -58,15 +60,16 @@ has been orphaned and all necessary changes are manually pulled from the [dev br
 * Consider creating a icon typeset to reduce network traffic
 
 ####Deployment process
-* Currently deployment is too complex, the current process looks something like this:
+* Currently deployment is too complex, need build script before development continues, current process looks something like this:
     * git checkout master
     * git checkout dev .
+    * mv src/app .
     * git reset
-    * compass compile
-    * git add -u
-    * manually diff index.html to switch ensure CDNs are being used
-    * manually add new any assets
-    * git clean -xdf - remove untracked, directories, and ignore files
-    * python -m SimpleHTTPServer 8000 - to test the changes 
+    * jspm bundle-sfx --minify main/app - create self executing bundle with all dependencies minified
+    * git add -u - add any files that have been changed
+    * Manually git add any new files
+    * Manually diff index.html
+    * python -m SimpleHTTPServer 80 - to test
     * git push to deploy
     * git tag [vX.X] -af [ref] - use annotated tag, force to update version
+
