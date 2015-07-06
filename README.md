@@ -1,5 +1,7 @@
 ##ksrb.github.io
 
+[![Join the chat at https://gitter.im/ksrb/ksrb.github.io](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ksrb/ksrb.github.io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ###[Master branch](https://github.com/ksrb/ksrb.github.io/tree/master)
 * Github pages for a user are deployed under the repository [username].github.io under the master branch.
 * Therefore to avoid polluting the development branch with unnecessary files (compiled css and js) the master
