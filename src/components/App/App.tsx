@@ -1,10 +1,11 @@
-import { Grid } from "@material-ui/core";
-import clsx from "clsx";
+import { Container } from "@material-ui/core";
 import React, { FC } from "react";
 import About from "src/components/About";
 import Experiences from "src/components/Experiences";
+import Header from "src/components/Header";
 import Navbar from "src/components/Navbar";
 import Skills from "src/components/Skills";
+import { Anchors } from "src/constants";
 
 import useStyles from "./styles";
 
@@ -12,20 +13,19 @@ const App: FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Grid container className={classes.header}>
-        <div className={classes.header_name}>
-          K<span className={classes.header_name__small}>EVIN</span>
-        </div>
-        <div className={clsx(classes.header_name, classes.header_name__last)}>
-          S<span className={classes.header_name__small}>UEN</span>
-        </div>
-      </Grid>
+    <Container className={classes.root} maxWidth="md">
+      <Header />
       <Navbar />
-      <About />
-      <Skills />
-      <Experiences />
-    </div>
+      <div id={Anchors.About}>
+        <About />
+      </div>
+      <div id={Anchors.Skills}>
+        <Skills />
+      </div>
+      <div id={Anchors.Experience}>
+        <Experiences />
+      </div>
+    </Container>
   );
 };
 

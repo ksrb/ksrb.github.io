@@ -2,7 +2,7 @@ import { ButtonBase, ButtonBaseProps } from "@material-ui/core";
 import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
 import Link from "src/components/Link";
-import { useStylesShared } from "src/components/Skills";
+import { useStylesShared } from "src/components/Skills/StylesProvider";
 
 type Props = {
   color?: string;

@@ -10,6 +10,8 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { useScrollElementTrackerRefCallback } from "src/components/ScrollElementTracker";
+import { skillsListenerId } from "src/constants";
 import { cache } from "src/graphql";
 import { useSkillsGetQuery } from "src/graphql/__generated__";
 import typenames from "src/graphql/typenames";
@@ -25,9 +27,9 @@ import {
   usesBuildIdentity,
   usesFrontendIdentity,
 } from "./constants";
-import { useStylesShared } from "./index";
 import MeterRoot from "./MeterRoot";
 import Skill, { SkillType } from "./Skill";
+import { useStylesShared } from "./StylesProvider";
 
 const Filter: FC<{ color: string }> = ({ color }) => (
   <filter id={color.substring(1)}>
@@ -152,9 +154,17 @@ const Skills: FC = () => {
     setSelectedSkill(undefined);
   }, [showSearch, timeline]);
 
+  const scrollElementTrackerRef = useScrollElementTrackerRefCallback(
+    skillsListenerId,
+  );
+
   return (
     <>
-      <Grid container className={classesSkills.root}>
+      <Grid
+        container
+        className={classesSkills.root}
+        ref={scrollElementTrackerRef}
+      >
         <Grid item xs={12}>
           <div className={classesSkills.skills}>
             <div className={classesSkill.skill}>

@@ -3,11 +3,12 @@ import { jssPreset, StylesProvider, ThemeProvider } from "@material-ui/styles";
 import { create } from "jss";
 import camelCase from "jss-plugin-camel-case";
 import compose from "jss-plugin-compose";
-import extend from "jss-plugin-extend";
 import defaultUnit from "jss-plugin-default-unit";
+import extend from "jss-plugin-extend";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import ScrollElementTracker from "./components/ScrollElementTracker";
 import client from "./graphql";
 import * as serviceWorker from "./serviceWorker";
 import theme from "./theme";
@@ -26,7 +27,9 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <StylesProvider jss={jss}>
       <ThemeProvider theme={theme}>
-        <App />
+        <ScrollElementTracker>
+          <App />
+        </ScrollElementTracker>
       </ThemeProvider>
     </StylesProvider>
   </ApolloProvider>,

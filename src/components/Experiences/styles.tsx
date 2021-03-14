@@ -12,21 +12,11 @@ const history_titleTransition = [
 const history_titleFontSize = "16px";
 const history_titleLineHeight = "1.2";
 
-const history_title__expanded = {
-  height: `calc(${history_titleFontSize} * ${history_titleLineHeight})`,
-  width: "auto",
-  margin: "0 3px 10px",
-  padding: "0 5px",
-  borderRadius: "2px",
-
-  fontSize: history_titleFontSize,
-  lineHeight: history_titleLineHeight,
-};
-
 export default makeStyles<Theme>(
   ({
+    spacing,
     palette: {
-      common: { white, black },
+      common: { black },
     },
     marginBottom,
     primaryColor,
@@ -76,15 +66,25 @@ export default makeStyles<Theme>(
     accomplishments: {},
 
     // History
+    history_title__expanded: {
+      height: `calc(${history_titleFontSize} * ${history_titleLineHeight})`,
+      width: "auto",
+      margin: `0 3px ${spacing(1)}px`,
+      padding: "1px 5px",
+      borderRadius: "2px",
+
+      fontSize: history_titleFontSize,
+      lineHeight: history_titleLineHeight,
+    },
     history: {
       flex: 1,
       "&:hover > $histories > $history > $history_title": {
-        ...history_title__expanded,
+        extend: "history_title__expanded",
       },
     },
     history__expanded: {
       "& $history_title": {
-        ...history_title__expanded,
+        extend: "history_title__expanded",
       },
       "& > $histories": {
         flexWrap: "wrap",
@@ -110,7 +110,7 @@ export default makeStyles<Theme>(
       transition: history_titleTransition,
     },
     history_title__root: {
-      ...history_title__expanded,
+      extend: "history_title__expanded",
       borderRadius: 0,
       margin: 0,
     },
@@ -122,9 +122,6 @@ export default makeStyles<Theme>(
     },
     history_title__build: {
       backgroundColor: trinaryColor,
-    },
-    history_titleText: {
-      color: white,
     },
   }),
 );

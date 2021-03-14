@@ -59,7 +59,8 @@ const experiences: Experience[] = [
     company: companies.pmat,
     role: "Senior Frontend Developer",
     jobType: "Full time",
-    startDate: new Date(2018, 6, 1).toString(),
+    startDate: new Date(2018, 6, 9).toString(),
+    endDate: new Date(2021, 2, 12).toString(),
     histories: [
       createHistory({
         values: [uses.Frontend],

@@ -1,11 +1,18 @@
-import React, { FC } from "react";
 import { Grid } from "@material-ui/core";
+import React, { FC } from "react";
+import { useScrollElementTrackerRefCallback } from "src/components/ScrollElementTracker";
+import { aboutListenerId } from "src/constants";
 import useStyles from "./styles";
 
 const About: FC = () => {
+  const scrollElementTrackerRef = useScrollElementTrackerRefCallback(
+    aboutListenerId,
+  );
+
   const classes = useStyles();
+
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} ref={scrollElementTrackerRef}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque
       lacus magna, at dignissim purus pretium sed. Proin ac facilisis diam. Sed
       auctor leo id tortor scelerisque, id ultricies tellus blandit. Suspendisse
