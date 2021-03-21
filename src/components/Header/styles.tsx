@@ -1,11 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { Theme } from "src/theme";
 
-export const header__navbarHeader_nameFontSize = 24;
-export const header_nameLineHeight = 1.2;
-export const header__navbarHeight =
-  header__navbarHeader_nameFontSize * header_nameLineHeight;
-
 export default makeStyles<Theme>(({ spacing, marginBottom, primaryColor }) => ({
   root: {
     padding: spacing(0, 2),
@@ -20,7 +15,7 @@ export default makeStyles<Theme>(({ spacing, marginBottom, primaryColor }) => ({
     margin: 0,
     width: "auto",
     "& $header_name": {
-      fontSize: header__navbarHeader_nameFontSize,
+      fontSize: 24,
       "&:first-child": {
         marginRight: 3,
       },
@@ -32,7 +27,6 @@ export default makeStyles<Theme>(({ spacing, marginBottom, primaryColor }) => ({
 
   header_name: {
     fontSize: 36,
-    lineHeight: header_nameLineHeight,
     "&:first-child": {
       marginRight: 5,
     },

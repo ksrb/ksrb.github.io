@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import clsx from "clsx";
 import React, { FC, useCallback } from "react";
+import Contacts from "src/components/Contacts";
 import Header from "src/components/Header";
 import Link from "src/components/Link";
 import {
@@ -71,7 +72,7 @@ const Navbar: FC = () => {
   );
 
   return (
-    <div className={classes.root} ref={scrollElementTrackerRef}>
+    <>
       <Grid
         item
         xs={12}
@@ -79,6 +80,16 @@ const Navbar: FC = () => {
       >
         <Items />
       </Grid>
+      <Grid
+        item
+        xs={12}
+        className={clsx(classes.content, classes.content__centered)}
+        ref={scrollElementTrackerRef}
+      >
+        <Contacts />
+      </Grid>
+
+      {/* Fixed navbar */}
       <div
         className={clsx(
           classes.content,
@@ -86,18 +97,23 @@ const Navbar: FC = () => {
           !navbarListener.inViewPort && classes.content__fixedExpanded,
         )}
       >
-        <Header
-          classes={{
-            root: clsx(
-              classes.header,
-              !navbarListener.inViewPort && classes.header__expanded,
-            ),
-          }}
-          variant="navbar"
-        />
-        <Items />
+        <div className={classes.contentFixed_left}>
+          <Header
+            classes={{
+              root: clsx(
+                classes.header,
+                !navbarListener.inViewPort && classes.header__expanded,
+              ),
+            }}
+            variant="navbar"
+          />
+          <Items />
+        </div>
+        <div className={classes.contentFixed_right}>
+          <Contacts />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

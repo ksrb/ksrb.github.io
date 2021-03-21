@@ -1,11 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
-import defaultTheme, { Theme } from "src/theme";
-import { header__navbarHeight } from "src/components/Header/styles";
+import { Theme } from "src/theme";
 
-export const content__fixedExpandedPaddingUsingSpacing = 1;
-export const navbarHeight =
-  header__navbarHeight +
-  defaultTheme.spacing(content__fixedExpandedPaddingUsingSpacing) * 2;
+export const navbarHeight = 49;
 
 export default makeStyles<Theme>(
   ({
@@ -22,12 +18,7 @@ export default makeStyles<Theme>(
       },
       to: {
         maxHeight: navbarHeight,
-        padding: spacing(
-          content__fixedExpandedPaddingUsingSpacing,
-          0,
-          content__fixedExpandedPaddingUsingSpacing,
-          0,
-        ),
+        padding: spacing(1, 0),
       },
     },
     "@keyframes slideFromLeft": {
@@ -44,7 +35,6 @@ export default makeStyles<Theme>(
 
     content: {
       display: "flex",
-      overflow: "hidden",
     },
     content__centered: {
       justifyContent: "center",
@@ -52,8 +42,10 @@ export default makeStyles<Theme>(
     },
     content__fixed: {
       display: "flex",
-      alignItems: "center",
+      justifyContent: "space-between",
+      overflow: "hidden",
       position: "fixed",
+      boxSizing: "border-box",
       // Negative value calculate from:
       // https://github.com/mui-org/material-ui/blob/v4.11.3/packages/material-ui/src/Container/Container.js#L17-L19
       width: `calc(100% - ${spacing(3) * 2}px)`,
@@ -62,11 +54,18 @@ export default makeStyles<Theme>(
       zIndex: 1,
       maxHeight: 0,
     },
-
     content__fixedExpanded: {
       animationName: "$slideFromTop",
       animationDuration: ".3s",
       animationFillMode: "forwards",
+    },
+
+    contentFixed_left: {
+      display: "flex",
+      alignItems: "center",
+    },
+    contentFixed_right: {
+      display: "flex",
     },
 
     item: {
@@ -74,17 +73,18 @@ export default makeStyles<Theme>(
     },
 
     header: {
-      marginRight: spacing(2),
-      overflow: "hidden",
-      maxWidth: 0,
-      flexWrap: "nowrap",
-      justifyContent: "initial",
+      "&$header__expanded": {
+        flexWrap: "nowrap",
+        justifyContent: "initial",
+        marginRight: spacing(2),
+        maxWidth: 0,
+        overflow: "hidden",
+        animationDelay: ".3s",
+        animationDuration: ".3s",
+        animationFillMode: "forwards",
+        animationName: "$slideFromLeft",
+      },
     },
-    header__expanded: {
-      animationDelay: ".3s",
-      animationDuration: ".3s",
-      animationFillMode: "forwards",
-      animationName: "$slideFromLeft",
-    },
+    header__expanded: {},
   }),
 );

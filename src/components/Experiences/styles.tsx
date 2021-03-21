@@ -71,7 +71,7 @@ export default makeStyles<Theme>(
       width: "auto",
       margin: `0 3px ${spacing(1)}px`,
       padding: "1px 5px",
-      borderRadius: "2px",
+      borderRadius: 2,
 
       fontSize: history_titleFontSize,
       lineHeight: history_titleLineHeight,
