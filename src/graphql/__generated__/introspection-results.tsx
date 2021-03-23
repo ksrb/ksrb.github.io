@@ -12,6 +12,7 @@ const result: PossibleTypesResultData = {
       "Tool",
       "History",
       "Experience",
+      "SampleWork",
       "Skill",
     ],
     Displayed: ["Use", "Language", "Tool"],

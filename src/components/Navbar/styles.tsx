@@ -5,6 +5,9 @@ export const navbarHeight = 49;
 
 export default makeStyles<Theme>(
   ({
+    breakpoints: {
+      values: { md },
+    },
     spacing,
     palette: {
       common: { white },
@@ -14,11 +17,13 @@ export default makeStyles<Theme>(
     "@keyframes slideFromTop": {
       from: {
         maxHeight: 0,
-        padding: 0,
+        padding: spacing(0, 5, 0, 0),
       },
       to: {
         maxHeight: navbarHeight,
-        padding: spacing(1, 0),
+        // Right padding calculated from scrollbar (16px) and <Container>
+        // padding (24px)
+        padding: spacing(1, 5, 1, 0),
       },
     },
     "@keyframes slideFromLeft": {
@@ -36,19 +41,15 @@ export default makeStyles<Theme>(
     content: {
       display: "flex",
     },
-    content__centered: {
+    content__inViewPort: {
       justifyContent: "center",
       marginBottom: marginBottom,
     },
     content__fixed: {
-      display: "flex",
       justifyContent: "space-between",
       overflow: "hidden",
       position: "fixed",
       boxSizing: "border-box",
-      // Negative value calculate from:
-      // https://github.com/mui-org/material-ui/blob/v4.11.3/packages/material-ui/src/Container/Container.js#L17-L19
-      width: `calc(100% - ${spacing(3) * 2}px)`,
       top: 0,
       background: white,
       zIndex: 1,

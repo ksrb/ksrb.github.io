@@ -61,6 +61,13 @@ type Experience implements Node {
   index: Int!
   role: String!
   startDate: String!
+  sampleWorks: [SampleWork!]!
+}
+
+type SampleWork implements Node {
+  id: ID!
+  image: String!
+  caption: String!
 }
 
 type Skill implements Node {

@@ -1,5 +1,6 @@
 import { DAY } from "src/constants";
-import { Experience, History } from "src/graphql/__generated__";
+import { experienceAssetsDirectory } from "src/constants/config";
+import { Experience, History, SampleWork } from "src/graphql/__generated__";
 import typenames from "src/graphql/typenames";
 import { RequiredByElsePartial } from "src/types";
 import companies from "./companies";
@@ -29,7 +30,18 @@ function createExperience(
     jobType: "",
     role: "",
     days,
+    sampleWorks: [],
     ...experience,
+  };
+}
+
+let sampleWorkId = 0;
+
+function createSampleWork(sampleWork: Omit<SampleWork, "id">): SampleWork {
+  return {
+    __typename: typenames.SampleWork,
+    id: (sampleWorkId++).toString(),
+    ...sampleWork,
   };
 }
 
@@ -110,6 +122,56 @@ const experiences: Experience[] = [
       "Designed and implemented core application code, significant contributions include major rendering improvements by utilizing HTML canvas to render 50k+ entities on a map.",
       "Introduced and maintaining GraphQL service, streamlining development process between backend and frontend teams.",
     ],
+    sampleWorks: [
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing-manual.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing-manual-polygon.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing-drawing-polygon.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/alerts.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/base.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/base-3d.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/base-generated.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/dialog-quick-list.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/kml.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/left-panel.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/pmat/left-panel-layers.png`,
+      }),
+    ],
   }),
   createExperience({
     company: companies.personal,
@@ -173,10 +235,33 @@ const experiences: Experience[] = [
       }),
     ],
     accomplishments: [
-      "Used ReactJS, Babel, and Webpack to create front-end application using current and experimental versions of JavaScript.",
-      "Maintained front end build and deployment pipeline and incorporated new technologies to streamline development such as SASS and CSS modules.",
+      "Used React to make important contributions to several parts of the core application, with major contributions going towards enhancing user knowledge of the factors that affect their credit score.",
+      "Maintained front end build and deployment pipeline and incorporating new technologies to streamline development such as SASS and CSS modules.",
       "Created several microservices using Golang to retrieve data from credit agencies such as Transunion and Equifax.",
       "Built and deployed microservices using Docker, took part in the creation of a 3-tier architecture creating a system that was both secure and scalable.",
+    ],
+    sampleWorks: [
+      createSampleWork({
+        caption:
+          "Main dashboard, showing user's current credit score and other helpful links to explain how a credit score is determined.",
+        image: `${experienceAssetsDirectory}/lantern credit/dashboard.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/lantern credit/interactive-credit-report.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/lantern credit/credit-factors.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/lantern credit/credit-factors-total-accounts.png`,
+      }),
+      createSampleWork({
+        caption: "",
+        image: `${experienceAssetsDirectory}/lantern credit/national-averages.png`,
+      }),
     ],
   }),
   createExperience({
@@ -259,6 +344,21 @@ const experiences: Experience[] = [
       "Rapidly designed and wireframed several prototypes in an effort to modernize Niksun's client facing applications.",
       "Created a workspace setup and build script using Gradle, significantly reducing onboarding time of new developers.",
     ],
+    sampleWorks: [
+      createSampleWork({
+        caption: "Proposal for new company homepage, designed using Photoshop.",
+        image: `${experienceAssetsDirectory}/niksun/website-template.png`,
+      }),
+      createSampleWork({
+        caption:
+          "Prototype of new NetDetector, Niksun's network analysis software, implemented using GWT. This is a mock I designed in Photoshop, screenshots of the actually product are proprietary.",
+        image: `${experienceAssetsDirectory}/niksun/template-with-pods.png`,
+      }),
+      createSampleWork({
+        caption: "Redesigned login page for Niksun client facing applications.",
+        image: `${experienceAssetsDirectory}/niksun/login-template.png`,
+      }),
+    ],
   }),
   createExperience({
     company: companies.scholarsForCharity,
@@ -289,6 +389,17 @@ const experiences: Experience[] = [
       "Gathered requirements, designed graphics, and created sites for clients.",
       "Lead sessions for web and graphic design, training new members in basic development techniques and best practices.",
       "Actively promoted organization and responsible for recruiting several members.",
+    ],
+    sampleWorks: [
+      createSampleWork({
+        caption:
+          "Designed banner for client, Quintessence Music, a organization that helps promote local music groups.",
+        image: `${experienceAssetsDirectory}/scholars for charity/quintessence.png`,
+      }),
+      createSampleWork({
+        caption: "Redesigned banner for organization's site",
+        image: `${experienceAssetsDirectory}/scholars for charity/banner.png`,
+      }),
     ],
   }),
 ];

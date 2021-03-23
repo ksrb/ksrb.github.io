@@ -57,6 +57,11 @@ fragment ExperienceFields on Experience {
   index
   role
   startDate
+  sampleWorks {
+    id
+    caption
+    image
+  }
 }
 
 query ExperiencesGet {

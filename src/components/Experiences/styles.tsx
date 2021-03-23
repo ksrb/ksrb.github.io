@@ -17,6 +17,7 @@ export default makeStyles<Theme>(
     spacing,
     palette: {
       common: { black },
+      divider,
     },
     marginBottom,
     primaryColor,
@@ -25,6 +26,13 @@ export default makeStyles<Theme>(
   }) => ({
     root: {
       marginBottom: marginBottom,
+
+      "& $experience:last-child": {
+        "& $experience_content": {
+          marginBottom: 0,
+          borderBottom: "none",
+        },
+      },
     },
 
     experience: {
@@ -34,6 +42,10 @@ export default makeStyles<Theme>(
     experience_content: {
       flex: 1,
       marginBottom: marginBottom,
+      borderBottom: `2px solid ${divider}`,
+      "& > $history": {
+        marginBottom: marginBottom,
+      },
     },
 
     header: {
@@ -122,6 +134,22 @@ export default makeStyles<Theme>(
     },
     history_title__build: {
       backgroundColor: trinaryColor,
+    },
+
+    sampleWorks: {
+      marginBottom: marginBottom,
+    },
+    sampleWork: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    sampleWork_image: {
+      maxWidth: "100%",
+      maxHeight: 200,
+    },
+    carousel_image: {
+      width: "100%",
     },
   }),
 );

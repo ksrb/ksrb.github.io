@@ -96,6 +96,14 @@ export type Experience = Node & {
   index: Scalars["Int"];
   role: Scalars["String"];
   startDate: Scalars["String"];
+  sampleWorks: Array<SampleWork>;
+};
+
+export type SampleWork = Node & {
+  __typename?: "SampleWork";
+  id: Scalars["ID"];
+  image: Scalars["String"];
+  caption: Scalars["String"];
 };
 
 export type Skill = Node & {
@@ -178,6 +186,12 @@ export type ExperienceFieldsFragment = { __typename?: "Experience" } & Pick<
           >
         >;
       } & HistoryFieldsFragment
+    >;
+    sampleWorks: Array<
+      { __typename?: "SampleWork" } & Pick<
+        SampleWork,
+        "id" | "caption" | "image"
+      >
     >;
   };
 
@@ -320,6 +334,11 @@ export const ExperienceFieldsFragmentDoc = gql`
     index
     role
     startDate
+    sampleWorks {
+      id
+      caption
+      image
+    }
   }
   ${HistoryFieldsFragmentDoc}
 `;
@@ -775,6 +794,7 @@ export type ResolversTypes = {
     | ResolversTypes["Tool"]
     | ResolversTypes["History"]
     | ResolversTypes["Experience"]
+    | ResolversTypes["SampleWork"]
     | ResolversTypes["Skill"];
   ID: ResolverTypeWrapper<Scalars["ID"]>;
   Company: ResolverTypeWrapper<Company>;
@@ -789,6 +809,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars["Int"]>;
   Experience: ResolverTypeWrapper<Experience>;
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
+  SampleWork: ResolverTypeWrapper<SampleWork>;
   Skill: ResolverTypeWrapper<Skill>;
   DisplayedNode:
     | ResolversTypes["Tool"]
@@ -808,6 +829,7 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["Tool"]
     | ResolversParentTypes["History"]
     | ResolversParentTypes["Experience"]
+    | ResolversParentTypes["SampleWork"]
     | ResolversParentTypes["Skill"];
   ID: Scalars["ID"];
   Company: Company;
@@ -822,6 +844,7 @@ export type ResolversParentTypes = {
   Int: Scalars["Int"];
   Experience: Experience;
   Boolean: Scalars["Boolean"];
+  SampleWork: SampleWork;
   Skill: Skill;
   DisplayedNode:
     | ResolversParentTypes["Tool"]
@@ -850,6 +873,7 @@ export type NodeResolvers<
     | "Tool"
     | "History"
     | "Experience"
+    | "SampleWork"
     | "Skill",
     ParentType,
     ContextType
@@ -958,6 +982,21 @@ export type ExperienceResolvers<
   index: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   role: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   startDate: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  sampleWorks: Resolver<
+    Array<ResolversTypes["SampleWork"]>,
+    ParentType,
+    ContextType
+  >;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SampleWorkResolvers<
+  ContextType = ApolloClientContext,
+  ParentType extends ResolversParentTypes["SampleWork"] = ResolversParentTypes["SampleWork"]
+> = {
+  id: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
+  image: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  caption: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1024,6 +1063,7 @@ export type Resolvers<ContextType = ApolloClientContext> = {
   Tool: ToolResolvers<ContextType>;
   History: HistoryResolvers<ContextType>;
   Experience: ExperienceResolvers<ContextType>;
+  SampleWork: SampleWorkResolvers<ContextType>;
   Skill: SkillResolvers<ContextType>;
   DisplayedNode: DisplayedNodeResolvers<ContextType>;
   Query: QueryResolvers<ContextType>;

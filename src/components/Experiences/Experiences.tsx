@@ -1,6 +1,13 @@
-import { Grid } from "@material-ui/core";
+import {
+  Dialog,
+  DialogContent,
+  Grid,
+  GridProps,
+  Paper,
+} from "@material-ui/core";
 import clsx from "clsx";
 import React, { FC, useCallback, useMemo, useState } from "react";
+import Carousel from "react-material-ui-carousel";
 import Link from "src/components/Link";
 import { useScrollElementTrackerRefCallback } from "src/components/ScrollElementTracker";
 import { useColorByType } from "src/components/util";
@@ -128,8 +135,17 @@ const Experience: FC<{
     role,
     histories,
     startDate,
+    sampleWorks,
   } = experience;
 
+  const sampleWorksThumbnails =
+    sampleWorks.length > 3 ? [...sampleWorks].splice(0, 3) : sampleWorks;
+
+  const [sampleWorkDialogOpen, setSampleWorkDialogOpen] = useState(false);
+  const handleSampleWorksToggle = useCallback(
+    () => setSampleWorkDialogOpen(!sampleWorkDialogOpen),
+    [sampleWorkDialogOpen],
+  );
   return (
     <Grid item xs={12} className={classes.experience}>
       <Timeline experience={experience} />
@@ -183,6 +199,54 @@ const Experience: FC<{
             ))}
           </div>
         </div>
+
+        <Grid
+          className={classes.sampleWorks}
+          container
+          onClick={handleSampleWorksToggle}
+          spacing={2}
+        >
+          {sampleWorksThumbnails.map(({ caption, image, id }) => (
+            <Grid
+              className={classes.sampleWork}
+              item
+              key={id}
+              xs={
+                Math.round(12 / sampleWorksThumbnails.length) as GridProps["xs"]
+              }
+            >
+              <img
+                className={classes.sampleWork_image}
+                src={image}
+                alt={caption}
+              />
+            </Grid>
+          ))}
+        </Grid>
+
+        <Dialog
+          maxWidth="md"
+          open={sampleWorkDialogOpen}
+          onClose={handleSampleWorksToggle}
+        >
+          <DialogContent>
+            <Carousel
+              animation="slide"
+              interval={2000}
+              timeout={{ appear: 200, enter: 200, exit: 0 }}
+            >
+              {sampleWorks.map(({ image, id }) => (
+                <Paper key={id}>
+                  <img
+                    className={classes.carousel_image}
+                    key={id}
+                    src={image}
+                  />
+                </Paper>
+              ))}
+            </Carousel>
+          </DialogContent>
+        </Dialog>
       </div>
     </Grid>
   );

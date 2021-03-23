@@ -4,6 +4,7 @@ import {
   Experience,
   History,
   Language,
+  SampleWork,
   Skill,
   Tool,
   Use,
@@ -17,6 +18,7 @@ interface Typenames {
   Tool: NonNullable<Tool["__typename"]>;
   Language: NonNullable<Language["__typename"]>;
   Use: NonNullable<Use["__typename"]>;
+  SampleWork: NonNullable<SampleWork["__typename"]>;
   Skill: NonNullable<Skill["__typename"]>;
 }
 
@@ -28,6 +30,7 @@ const typenames: Typenames = {
   Tool: "Tool",
   Language: "Language",
   Use: "Use",
+  SampleWork: "SampleWork",
   Skill: "Skill",
 };
 
