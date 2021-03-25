@@ -3,7 +3,7 @@ import gsap from "gsap";
 import React, { FC, Fragment, ReactNode, useCallback, useMemo } from "react";
 import MeterRoot from "src/components/Skills/MeterRoot";
 import { useStylesShared } from "src/components/Skills/StylesProvider";
-import { useColorByType } from "src/components/util";
+import { useColorByType } from "src/components/utility";
 import { Language, SkillsGetQuery, Tool } from "src/graphql/__generated__";
 import typenames from "src/graphql/typenames";
 import { ExtractArrayType } from "src/types";

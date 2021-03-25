@@ -247,7 +247,8 @@ const experiences: Experience[] = [
         image: `${experienceAssetsDirectory}/lantern credit/dashboard.png`,
       }),
       createSampleWork({
-        caption: "",
+        caption:
+          "The Interactive Credit Report was the main selling point of the application, allowing the user to simulate changes to their credit score based on the what offer(s) were selected.",
         image: `${experienceAssetsDirectory}/lantern credit/interactive-credit-report.png`,
       }),
       createSampleWork({
@@ -392,13 +393,13 @@ const experiences: Experience[] = [
     ],
     sampleWorks: [
       createSampleWork({
+        caption: "Redesigned banner for organization's site",
+        image: `${experienceAssetsDirectory}/scholars for charity/banner.png`,
+      }),
+      createSampleWork({
         caption:
           "Designed banner for client, Quintessence Music, a organization that helps promote local music groups.",
         image: `${experienceAssetsDirectory}/scholars for charity/quintessence.png`,
-      }),
-      createSampleWork({
-        caption: "Redesigned banner for organization's site",
-        image: `${experienceAssetsDirectory}/scholars for charity/banner.png`,
       }),
     ],
   }),

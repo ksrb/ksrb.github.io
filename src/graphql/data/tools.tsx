@@ -70,7 +70,7 @@ const tools = {
     languages: [languages.javascript],
   }),
   graphqlJava: createTool({
-    title: "GraphQl Java",
+    title: "GraphQL Java",
     url: "https://www.graphql-java.com",
     use: uses.Backend,
     languages: [languages.java],

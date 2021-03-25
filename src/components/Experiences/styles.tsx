@@ -149,7 +149,10 @@ export default makeStyles<Theme>(
       maxHeight: 200,
     },
     carousel_image: {
-      width: "100%",
+      display: "block",
+      margin: `0 auto ${marginBottom}px auto`,
+      maxHeight: "80vh",
+      maxWidth: "100%",
     },
   }),
 );
