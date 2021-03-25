@@ -104,6 +104,7 @@ export type SampleWork = Node & {
   id: Scalars["ID"];
   image: Scalars["String"];
   caption: Scalars["String"];
+  thumbnail: Scalars["Boolean"];
 };
 
 export type Skill = Node & {
@@ -190,7 +191,7 @@ export type ExperienceFieldsFragment = { __typename?: "Experience" } & Pick<
     sampleWorks: Array<
       { __typename?: "SampleWork" } & Pick<
         SampleWork,
-        "id" | "caption" | "image"
+        "id" | "caption" | "image" | "thumbnail"
       >
     >;
   };
@@ -338,6 +339,7 @@ export const ExperienceFieldsFragmentDoc = gql`
       id
       caption
       image
+      thumbnail
     }
   }
   ${HistoryFieldsFragmentDoc}
@@ -997,6 +999,7 @@ export type SampleWorkResolvers<
   id: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
   image: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   caption: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  thumbnail: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

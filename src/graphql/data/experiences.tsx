@@ -37,10 +37,13 @@ function createExperience(
 
 let sampleWorkId = 0;
 
-function createSampleWork(sampleWork: Omit<SampleWork, "id">): SampleWork {
+function createSampleWork(
+  sampleWork: RequiredByElsePartial<SampleWork, "caption" | "image">,
+): SampleWork {
   return {
     __typename: typenames.SampleWork,
     id: (sampleWorkId++).toString(),
+    thumbnail: false,
     ...sampleWork,
   };
 }
@@ -124,52 +127,67 @@ const experiences: Experience[] = [
     ],
     sampleWorks: [
       createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/alert-editing-manual.png`,
-      }),
-      createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/alert-editing-manual-polygon.png`,
-      }),
-      createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/alert-editing-drawing-polygon.png`,
-      }),
-      createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/alerts.png`,
-      }),
-      createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/alert-editing.png`,
-      }),
-      createSampleWork({
-        caption: "",
+        caption:
+          "The purpose of this application was to provide situation awareness to a operator, at the most basic level this was accomplished by providing the operator with a map that showed all entities in a area of interest. The position of these entities would be constantly updated via a constant stream of data from a websockets.",
         image: `${experienceAssetsDirectory}/pmat/base.png`,
+        thumbnail: true,
       }),
       createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/base-3d.png`,
-      }),
-      createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/base-generated.png`,
-      }),
-      createSampleWork({
-        caption: "",
+        caption:
+          "A operator could select a entity on the map to further extract details about the given entity and determine it's threat level. Multiple entities could be simultaneously selected for later comparison.",
         image: `${experienceAssetsDirectory}/pmat/dialog-quick-list.png`,
       }),
       createSampleWork({
-        caption: "",
-        image: `${experienceAssetsDirectory}/pmat/kml.png`,
-      }),
-      createSampleWork({
-        caption: "",
+        caption:
+          "Various overlays and configurations were available to the operator to further enhance their capabilities to determine the threat level of a entity.",
         image: `${experienceAssetsDirectory}/pmat/left-panel.png`,
       }),
       createSampleWork({
-        caption: "",
+        caption:
+          "Overlaying weather reports was frequently used by operators conducting search and rescue operations",
         image: `${experienceAssetsDirectory}/pmat/left-panel-layers.png`,
+      }),
+      createSampleWork({
+        caption:
+          "The 3D mode could be used to quickly understand the relatively altitudes of multiple entities.",
+        image: `${experienceAssetsDirectory}/pmat/base-3d.png`,
+      }),
+      createSampleWork({
+        caption:
+          "A example of the application handling 100,000 entities, the entities shown here are generated.",
+        image: `${experienceAssetsDirectory}/pmat/base-generated.png`,
+        thumbnail: true,
+      }),
+      createSampleWork({
+        caption:
+          "KML (Key-hole Markup Language) was supported to allow operators to import overlays from Google Earth.",
+        image: `${experienceAssetsDirectory}/pmat/kml.png`,
+      }),
+      createSampleWork({
+        caption:
+          "The alerting system allowed a operator to set specific conditions to notify them of certain threats.",
+        image: `${experienceAssetsDirectory}/pmat/alerts.png`,
+        thumbnail: true,
+      }),
+      createSampleWork({
+        caption:
+          "A alert could be set based on specific geospatial bounds or more general criteria such as if the entity was was in the air and at what altitude.",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing.png`,
+      }),
+      createSampleWork({
+        caption:
+          "A alert's geospatial bounds could be set manually but drawing tools existed allowing the user to convert between different shapes and modes.",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing-manual.png`,
+      }),
+      createSampleWork({
+        caption:
+          "A alert's geospatial shape could be seamlessly swapped between a from a rectangle to a polygon",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing-manual-polygon.png`,
+      }),
+      createSampleWork({
+        caption:
+          "A alert's geospatial mode could be seamlessly swapped from manually inputting the latitude and longitude to using a set of drawing tools.",
+        image: `${experienceAssetsDirectory}/pmat/alert-editing-drawing-polygon.png`,
       }),
     ],
   }),
@@ -252,15 +270,18 @@ const experiences: Experience[] = [
         image: `${experienceAssetsDirectory}/lantern credit/interactive-credit-report.png`,
       }),
       createSampleWork({
-        caption: "",
+        caption:
+          "Summary page of the major factors that affect a user's credit score.",
         image: `${experienceAssetsDirectory}/lantern credit/credit-factors.png`,
       }),
       createSampleWork({
-        caption: "",
+        caption:
+          "Summary page of the various accounts a user has open and closed.",
         image: `${experienceAssetsDirectory}/lantern credit/credit-factors-total-accounts.png`,
       }),
       createSampleWork({
-        caption: "",
+        caption:
+          "Graph showing user where their credit score falls in the United States.",
         image: `${experienceAssetsDirectory}/lantern credit/national-averages.png`,
       }),
     ],

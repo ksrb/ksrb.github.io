@@ -1,12 +1,19 @@
-import { Dialog, DialogContent, Grid, GridProps } from "@material-ui/core";
+import {
+  Dialog,
+  DialogContent,
+  Grid,
+  GridProps,
+  Typography,
+} from "@material-ui/core";
 import clsx from "clsx";
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import History from "src/components/Experiences/History";
 import { useStyles } from "src/components/Experiences/StylesProvider";
 import Timeline from "src/components/Experiences/Timeline";
 import Link from "src/components/Link";
 import { ExperiencesGetQuery } from "src/graphql/__generated__";
+import companies from "src/graphql/data/companies";
 import { ExtractArrayType } from "src/types";
 
 function renderDate(dateStr: string): string {
@@ -40,19 +47,40 @@ const Experience: FC<{
     sampleWorks,
   } = experience;
 
-  const sampleWorksThumbnails =
-    sampleWorks.length > 3 ? [...sampleWorks].splice(0, 3) : sampleWorks;
+  const sampleWorksThumbnails = useMemo(() => {
+    if (sampleWorks.length <= 3) {
+      return sampleWorks;
+    }
+
+    // Else sampleWorks.length > 3
+
+    const sampleWorksThumbnails = sampleWorks.filter(
+      ({ thumbnail }) => thumbnail,
+    );
+
+    // SampleWorks has assigned thumbnails
+
+    if (sampleWorksThumbnails.length !== 0) {
+      return sampleWorksThumbnails.length <= 3
+        ? sampleWorksThumbnails
+        : [...sampleWorksThumbnails].splice(0, 3);
+    }
+
+    // SampleWorks does not have assigned thumbnails
+    return [...sampleWorks].splice(0, 3);
+  }, [sampleWorks]);
 
   const [sampleWorkDialogOpen, setSampleWorkDialogOpen] = useState(false);
-  const [sampleWorkIndex, setSampleWorkIndex] = useState(0);
+  const [sampleWorkSelectedId, setSampleWorkSelectedId] = useState("");
 
   const handleSampleWorksToggle = useCallback(
-    (index: number) => {
-      setSampleWorkIndex(index);
+    (id: string) => {
+      setSampleWorkSelectedId(id);
       setSampleWorkDialogOpen(!sampleWorkDialogOpen);
     },
     [sampleWorkDialogOpen],
   );
+
   return (
     <Grid item xs={12} className={classes.experience}>
       <Timeline experience={experience} />
@@ -108,9 +136,9 @@ const Experience: FC<{
         </div>
 
         <Grid className={classes.sampleWorks} container spacing={2}>
-          {sampleWorksThumbnails.map(({ caption, image, id }, index) => (
+          {sampleWorksThumbnails.map(({ caption, image, id }) => (
             <Grid
-              onClick={handleSampleWorksToggle.bind(undefined, index)}
+              onClick={handleSampleWorksToggle.bind(undefined, id)}
               className={classes.sampleWork}
               item
               key={id}
@@ -134,7 +162,9 @@ const Experience: FC<{
         >
           <DialogContent>
             <Carousel
-              index={sampleWorkIndex}
+              index={sampleWorks.findIndex(
+                (sampleWork) => sampleWorkSelectedId === sampleWork.id,
+              )}
               animation="slide"
               autoPlay={false}
             >
@@ -146,7 +176,14 @@ const Experience: FC<{
                     src={image}
                     alt={caption}
                   />
-                  <div>{caption}</div>
+                  <Typography>{caption}</Typography>
+                  {company.id === companies.pmat.id && (
+                    <Typography variant="caption">
+                      Due to the sensitive nature of the work the capabilities
+                      of the application and description of the operators cannot
+                      be overly specific.
+                    </Typography>
+                  )}
                 </div>
               ))}
             </Carousel>

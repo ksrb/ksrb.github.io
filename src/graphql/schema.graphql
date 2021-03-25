@@ -68,6 +68,7 @@ type SampleWork implements Node {
   id: ID!
   image: String!
   caption: String!
+  thumbnail: Boolean!
 }
 
 type Skill implements Node {

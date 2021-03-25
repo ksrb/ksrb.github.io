@@ -61,6 +61,7 @@ fragment ExperienceFields on Experience {
     id
     caption
     image
+    thumbnail
   }
 }
 
