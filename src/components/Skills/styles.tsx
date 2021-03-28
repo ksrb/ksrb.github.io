@@ -86,10 +86,12 @@ export default makeStyles<Theme>(
             (meter_edgeSize - meter_rootSize / 2) *
               (toggleMapValues.length - 1),
           overflow: "visible",
+          // TODO (ksuen): figure out why border-radius is overridden in production
+          "& $autoComplete_inputRoot": {
+            borderRadius: "28px / 50%",
+          },
         },
-        autoComplete_inputRoot: {
-          borderRadius: "28px / 50%",
-        },
+        autoComplete_inputRoot: {},
 
         filters: {
           height: 0,
