@@ -180,8 +180,8 @@ const Experience: FC<{
                   {company.id === companies.pmat.id && (
                     <Typography variant="caption">
                       Due to the sensitive nature of the work the capabilities
-                      of the application and description of the operators cannot
-                      be overly specific.
+                      of the application and description of the operators are
+                      intentionally vague.
                     </Typography>
                   )}
                 </div>

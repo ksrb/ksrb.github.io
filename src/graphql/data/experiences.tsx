@@ -128,18 +128,18 @@ const experiences: Experience[] = [
     sampleWorks: [
       createSampleWork({
         caption:
-          "The purpose of this application was to provide situation awareness to a operator, at the most basic level this was accomplished by providing the operator with a map that showed all entities in a area of interest. The position of these entities would be constantly updated via a constant stream of data from a websockets.",
+          "The purpose of this application was to provide situational awareness to a operator, at the most basic level this was accomplished by providing the operators with a map that showed all entities in a area of interest. The position of these entities would be constantly updated via a stream of data from a websockets.",
         image: `${experienceAssetsDirectory}/pmat/base.png`,
         thumbnail: true,
       }),
       createSampleWork({
         caption:
-          "A operator could select a entity on the map to further extract details about the given entity and determine it's threat level. Multiple entities could be simultaneously selected for later comparison.",
+          "Operators could select a entity on the map to extract further details about the given entity and determine it's threat level. Multiple entities could be simultaneously selected for later comparison.",
         image: `${experienceAssetsDirectory}/pmat/dialog-quick-list.png`,
       }),
       createSampleWork({
         caption:
-          "Various overlays and configurations were available to the operator to further enhance their capabilities to determine the threat level of a entity.",
+          "Various overlays and configurations were available to operators enhancing their capabilities allowing them to rapidly determine a entity's threat level.",
         image: `${experienceAssetsDirectory}/pmat/left-panel.png`,
       }),
       createSampleWork({
@@ -160,12 +160,12 @@ const experiences: Experience[] = [
       }),
       createSampleWork({
         caption:
-          "KML (Key-hole Markup Language) was supported to allow operators to import overlays from Google Earth.",
+          "KML (Keyhole Markup Language) was supported to allow operators to import overlays from Google Earth.",
         image: `${experienceAssetsDirectory}/pmat/kml.png`,
       }),
       createSampleWork({
         caption:
-          "The alerting system allowed a operator to set specific conditions to notify them of certain threats.",
+          "The alerting system allowed operators to set specific conditions to notify them of certain threats.",
         image: `${experienceAssetsDirectory}/pmat/alerts.png`,
         thumbnail: true,
       }),
@@ -176,12 +176,12 @@ const experiences: Experience[] = [
       }),
       createSampleWork({
         caption:
-          "A alert's geospatial bounds could be set manually but drawing tools existed allowing the user to convert between different shapes and modes.",
+          "A alert's geospatial bounds could be set manually but drawing tools were implemented allowing the user to convert between different shapes and modes.",
         image: `${experienceAssetsDirectory}/pmat/alert-editing-manual.png`,
       }),
       createSampleWork({
         caption:
-          "A alert's geospatial shape could be seamlessly swapped between a from a rectangle to a polygon",
+          "A alert's geospatial shape could be seamlessly swapped between a from a rectangle to a polygon.",
         image: `${experienceAssetsDirectory}/pmat/alert-editing-manual-polygon.png`,
       }),
       createSampleWork({
