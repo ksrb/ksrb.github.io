@@ -5,9 +5,6 @@ export const navbarHeight = 49;
 
 export default makeStyles<Theme>(
   ({
-    breakpoints: {
-      values: { md },
-    },
     spacing,
     palette: {
       common: { white },
@@ -77,7 +74,7 @@ export default makeStyles<Theme>(
       "&$header__expanded": {
         flexWrap: "nowrap",
         justifyContent: "initial",
-        marginRight: spacing(2),
+        marginRight: spacing(1),
         maxWidth: 0,
         overflow: "hidden",
         animationDelay: ".3s",

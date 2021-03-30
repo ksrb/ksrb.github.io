@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import clsx from "clsx";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
+import { siteUrl } from "src/constants/config";
 import useStyles from "./styles";
 
 type Props = {
@@ -10,10 +11,16 @@ type Props = {
 
 const Header: FC<Props> = (props) => {
   const { variant = "header" } = props;
+
+  const handleGridClick = useCallback(() => {
+    window.open(siteUrl);
+  }, []);
+
   const classes = useStyles();
 
   return (
     <Grid
+      onClick={handleGridClick}
       container
       className={clsx(
         props.classes?.root,

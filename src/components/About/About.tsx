@@ -1,8 +1,9 @@
 import { Grid } from "@material-ui/core";
 import React, { FC } from "react";
+import Link from "src/components/Link";
 import { useScrollElementTrackerRefCallback } from "src/components/ScrollElementTracker";
 import { aboutListenerId } from "src/constants";
-import Link from "src/components/Link";
+import { siteUrl } from "src/constants/config";
 import useStyles from "./styles";
 
 const About: FC = () => {
@@ -28,7 +29,7 @@ const About: FC = () => {
 
         <p>
           A legacy site is available{" "}
-          <Link href="//ksrb.github.io/legacy">here</Link>.
+          <Link href={`${siteUrl}/legacy`}>here</Link>.
         </p>
       </Grid>
     </Grid>
