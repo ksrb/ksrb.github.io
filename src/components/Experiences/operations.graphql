@@ -60,6 +60,7 @@ fragment ExperienceFields on Experience {
   sampleWorks {
     id
     caption
+    description
     image
     thumbnail
   }

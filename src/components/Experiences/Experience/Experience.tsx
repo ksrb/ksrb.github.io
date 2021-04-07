@@ -13,7 +13,6 @@ import { useStyles } from "src/components/Experiences/StylesProvider";
 import Timeline from "src/components/Experiences/Timeline";
 import Link from "src/components/Link";
 import { ExperiencesGetQuery } from "src/graphql/__generated__";
-import companies from "src/graphql/data/companies";
 import { ExtractArrayType } from "src/types";
 
 function renderDate(dateStr: string): string {
@@ -136,7 +135,7 @@ const Experience: FC<{
         </div>
 
         <Grid className={classes.sampleWorks} container spacing={2}>
-          {sampleWorksThumbnails.map(({ caption, image, id }) => (
+          {sampleWorksThumbnails.map(({ description, image, id }) => (
             <Grid
               onClick={handleSampleWorksToggle.bind(undefined, id)}
               className={classes.sampleWork}
@@ -149,7 +148,7 @@ const Experience: FC<{
               <img
                 className={classes.sampleWork_image}
                 src={image}
-                alt={caption}
+                alt={description}
               />
             </Grid>
           ))}
@@ -168,21 +167,17 @@ const Experience: FC<{
               animation="slide"
               autoPlay={false}
             >
-              {sampleWorks.map(({ caption, image, id }) => (
+              {sampleWorks.map(({ caption, description, image, id }) => (
                 <div key={id}>
                   <img
                     className={classes.carousel_image}
                     key={id}
                     src={image}
-                    alt={caption}
+                    alt={description}
                   />
-                  <Typography>{caption}</Typography>
-                  {company.id === companies.pmat.id && (
-                    <Typography variant="caption">
-                      Due to the sensitive nature of the work the capabilities
-                      of the application and description of the operators are
-                      intentionally vague.
-                    </Typography>
+                  <Typography>{description}</Typography>
+                  {caption && (
+                    <Typography variant="caption">{caption}</Typography>
                   )}
                 </div>
               ))}

@@ -38,14 +38,27 @@ function createExperience(
 let sampleWorkId = 0;
 
 function createSampleWork(
-  sampleWork: RequiredByElsePartial<SampleWork, "caption" | "image">,
+  sampleWork: RequiredByElsePartial<SampleWork, "description" | "image">,
 ): SampleWork {
   return {
     __typename: typenames.SampleWork,
     id: (sampleWorkId++).toString(),
     thumbnail: false,
+    caption: "",
     ...sampleWork,
   };
+}
+
+const pmatCaption =
+  "Due to the sensitive nature of the work only a older prototype with reduced capabilities can be shown.";
+
+function createSampleWorkForPMAT(
+  sampleWork: Parameters<typeof createSampleWork>[0],
+): SampleWork {
+  return createSampleWork({
+    ...sampleWork,
+    caption: pmatCaption,
+  });
 }
 
 let historyId = 0;
@@ -127,65 +140,74 @@ const experiences: Experience[] = [
     ],
     sampleWorks: [
       createSampleWork({
-        caption:
+        description:
+          "Splash screen that a user would be shown on first entering the application.",
+        image: `${experienceAssetsDirectory}/pmat/welcome.png`,
+        thumbnail: true,
+      }),
+      createSampleWork({
+        description:
           "The purpose of this application was to provide situational awareness to a operator, at the most basic level this was accomplished by providing the operators with a map that showed all entities in a area of interest. The position of these entities would be constantly updated via a stream of data from a websockets.",
+        image: `${experienceAssetsDirectory}/pmat/mock.png`,
+        thumbnail: true,
+      }),
+      createSampleWork({
+        description: pmatCaption,
         image: `${experienceAssetsDirectory}/pmat/base.png`,
         thumbnail: true,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "Operators could select a entity on the map to extract further details about the given entity and determine it's threat level. Multiple entities could be simultaneously selected for later comparison.",
         image: `${experienceAssetsDirectory}/pmat/dialog-quick-list.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "Various overlays and configurations were available to operators enhancing their capabilities allowing them to rapidly determine a entity's threat level.",
         image: `${experienceAssetsDirectory}/pmat/left-panel.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "Overlaying weather reports was frequently used by operators conducting search and rescue operations",
         image: `${experienceAssetsDirectory}/pmat/left-panel-layers.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "The 3D mode could be used to quickly understand the relatively altitudes of multiple entities.",
         image: `${experienceAssetsDirectory}/pmat/base-3d.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "A example of the application handling 100,000 entities, the entities shown here are generated.",
         image: `${experienceAssetsDirectory}/pmat/base-generated.png`,
-        thumbnail: true,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "KML (Keyhole Markup Language) was supported to allow operators to import overlays from Google Earth.",
         image: `${experienceAssetsDirectory}/pmat/kml.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "The alerting system allowed operators to set specific conditions to notify them of certain threats.",
         image: `${experienceAssetsDirectory}/pmat/alerts.png`,
-        thumbnail: true,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "A alert could be set based on specific geospatial bounds or more general criteria such as if the entity was was in the air and at what altitude.",
         image: `${experienceAssetsDirectory}/pmat/alert-editing.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "A alert's geospatial bounds could be set manually but drawing tools were implemented allowing the user to convert between different shapes and modes.",
         image: `${experienceAssetsDirectory}/pmat/alert-editing-manual.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "A alert's geospatial shape could be seamlessly swapped between a from a rectangle to a polygon.",
         image: `${experienceAssetsDirectory}/pmat/alert-editing-manual-polygon.png`,
       }),
-      createSampleWork({
-        caption:
+      createSampleWorkForPMAT({
+        description:
           "A alert's geospatial mode could be seamlessly swapped from manually inputting the latitude and longitude to using a set of drawing tools.",
         image: `${experienceAssetsDirectory}/pmat/alert-editing-drawing-polygon.png`,
       }),
@@ -260,27 +282,27 @@ const experiences: Experience[] = [
     ],
     sampleWorks: [
       createSampleWork({
-        caption:
+        description:
           "Main dashboard, showing user's current credit score and other helpful links to explain how a credit score is determined.",
         image: `${experienceAssetsDirectory}/lantern credit/dashboard.png`,
       }),
       createSampleWork({
-        caption:
+        description:
           "The Interactive Credit Report was the main selling point of the application, allowing the user to simulate changes to their credit score based on the what offer(s) were selected.",
         image: `${experienceAssetsDirectory}/lantern credit/interactive-credit-report.png`,
       }),
       createSampleWork({
-        caption:
+        description:
           "Summary page of the major factors that affect a user's credit score.",
         image: `${experienceAssetsDirectory}/lantern credit/credit-factors.png`,
       }),
       createSampleWork({
-        caption:
+        description:
           "Summary page of the various accounts a user has open and closed.",
         image: `${experienceAssetsDirectory}/lantern credit/credit-factors-total-accounts.png`,
       }),
       createSampleWork({
-        caption:
+        description:
           "Graph showing user where their credit score falls in the United States.",
         image: `${experienceAssetsDirectory}/lantern credit/national-averages.png`,
       }),
@@ -368,16 +390,18 @@ const experiences: Experience[] = [
     ],
     sampleWorks: [
       createSampleWork({
-        caption: "Proposal for new company homepage, designed using Photoshop.",
+        description:
+          "Proposal for new company homepage, designed using Photoshop.",
         image: `${experienceAssetsDirectory}/niksun/website-template.png`,
       }),
       createSampleWork({
-        caption:
+        description:
           "Prototype of new NetDetector, Niksun's network analysis software, implemented using GWT. This is a mock I designed in Photoshop, screenshots of the actually product are proprietary.",
         image: `${experienceAssetsDirectory}/niksun/template-with-pods.png`,
       }),
       createSampleWork({
-        caption: "Redesigned login page for Niksun client facing applications.",
+        description:
+          "Redesigned login page for Niksun client facing applications.",
         image: `${experienceAssetsDirectory}/niksun/login-template.png`,
       }),
     ],
@@ -414,11 +438,11 @@ const experiences: Experience[] = [
     ],
     sampleWorks: [
       createSampleWork({
-        caption: "Redesigned banner for organization's site",
+        description: "Redesigned banner for organization's site",
         image: `${experienceAssetsDirectory}/scholars for charity/banner.png`,
       }),
       createSampleWork({
-        caption:
+        description:
           "Designed banner for client, Quintessence Music, a organization that helps promote local music groups.",
         image: `${experienceAssetsDirectory}/scholars for charity/quintessence.png`,
       }),

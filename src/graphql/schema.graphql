@@ -67,6 +67,7 @@ type Experience implements Node {
 type SampleWork implements Node {
   id: ID!
   image: String!
+  description: String!
   caption: String!
   thumbnail: Boolean!
 }
