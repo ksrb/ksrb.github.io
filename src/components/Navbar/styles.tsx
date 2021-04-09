@@ -31,7 +31,7 @@ export default makeStyles<Theme>(
         // TODO: consider alternative to hard coded width to handle animation,
         // consider rendering a secondary component with visibility: none to
         // determine width followed by using maxWidth: 100%
-        maxWidth: 120,
+        maxWidth: 150,
       },
     },
 
